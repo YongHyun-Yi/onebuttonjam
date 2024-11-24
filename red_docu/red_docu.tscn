@@ -1,0 +1,17 @@
+[gd_scene load_steps=3 format=3 uid="uid://cgp0hx0rcyoy8"]
+
+[ext_resource type="Script" path="res://red_docu/red_docu.gd" id="1_fng12"]
+[ext_resource type="PackedScene" uid="uid://drg6bjl44r24g" path="res://stamp_system/confirm_stamp.tscn" id="2_7l283"]
+
+[node name="RedDocu" type="Node2D"]
+script = ExtResource("1_fng12")
+
+[node name="ColorRect" type="ColorRect" parent="."]
+offset_right = 438.0
+offset_bottom = 538.0
+color = Color(0.621094, 0.167404, 0.167404, 1)
+
+[node name="ConfirmStamp" parent="." instance=ExtResource("2_7l283")]
+visible = false
+position = Vector2(100, 384)
+metadata/_edit_lock_ = true
