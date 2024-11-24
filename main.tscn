@@ -19,8 +19,6 @@ metadata/_edit_lock_ = true
 [node name="DocuHolder" type="Node2D" parent="."]
 position = Vector2(378, 83)
 
-[node name="RedDocu" parent="DocuHolder" instance=ExtResource("2_3fhu4")]
-
 [node name="ReferenceRect" type="ReferenceRect" parent="."]
 offset_left = 478.0
 offset_top = 467.0
@@ -32,6 +30,7 @@ editor_only = false
 metadata/_edit_lock_ = true
 
 [node name="Timer" type="Timer" parent="."]
+autostart = true
 
 [node name="StempSystem" parent="." instance=ExtResource("5_a6li4")]
 

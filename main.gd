@@ -22,5 +22,6 @@ func _process(delta: float) -> void:
 func _on_timer_timeout() -> void:
 	docu_timer.wait_time = docu_timer_rng.randf_range(0.7, 1.2)
 	var docu_type = docu_type_rng.randi_range(0, 2)
+	docu_type = 0 # for docu test
 	var docu_ins = docu_types[docu_type].instantiate()
 	$DocuHolder.add_child(docu_ins)

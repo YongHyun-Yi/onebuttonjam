@@ -1,9 +1,14 @@
-[gd_scene load_steps=2 format=3 uid="uid://pmo4uml7kbgf"]
+[gd_scene load_steps=4 format=3 uid="uid://pmo4uml7kbgf"]
 
 [ext_resource type="Script" path="res://stamp_system/stemp_system.gd" id="1_fb50p"]
+[ext_resource type="PackedScene" uid="uid://drg6bjl44r24g" path="res://stamp_system/confirm_stamp.tscn" id="2_n0scv"]
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_odxbp"]
+size = Vector2(240, 85)
 
 [node name="StempSystem" type="Node"]
 script = ExtResource("1_fb50p")
+confirm_stamp = ExtResource("2_n0scv")
 
 [node name="long_press" type="Timer" parent="."]
 wait_time = 0.3
@@ -33,5 +38,12 @@ max_value = 0.17
 step = 0.001
 show_percentage = false
 
+[node name="Area2D" type="Area2D" parent="."]
+position = Vector2(604, 517)
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Area2D"]
+shape = SubResource("RectangleShape2D_odxbp")
+
 [connection signal="timeout" from="long_press" to="." method="_on_long_press_timeout"]
 [connection signal="timeout" from="double_press" to="." method="_on_double_press_timeout"]
+[connection signal="area_entered" from="Area2D" to="." method="_on_area_2d_area_entered"]
