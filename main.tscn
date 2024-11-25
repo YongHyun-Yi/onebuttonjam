@@ -33,4 +33,10 @@ autostart = true
 
 [node name="StempSystem" parent="." instance=ExtResource("5_a6li4")]
 
+[node name="docu_arr" type="Label" parent="."]
+offset_left = 16.0
+offset_top = 90.0
+offset_right = 221.0
+offset_bottom = 147.0
+
 [connection signal="timeout" from="Timer" to="." method="_on_timer_timeout"]
