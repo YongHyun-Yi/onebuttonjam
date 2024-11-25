@@ -21,13 +21,12 @@ position = Vector2(378, 83)
 
 [node name="ReferenceRect" type="ReferenceRect" parent="."]
 offset_left = 478.0
-offset_top = 467.0
+offset_top = 284.0
 offset_right = 731.0
-offset_bottom = 566.0
+offset_bottom = 383.0
 border_color = Color(0.266667, 0.266667, 0.266667, 0.607843)
 border_width = 5.0
 editor_only = false
-metadata/_edit_lock_ = true
 
 [node name="Timer" type="Timer" parent="."]
 autostart = true

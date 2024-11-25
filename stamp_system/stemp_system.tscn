@@ -15,7 +15,7 @@ wait_time = 0.3
 one_shot = true
 
 [node name="double_press" type="Timer" parent="."]
-wait_time = 0.17
+wait_time = 0.1
 one_shot = true
 
 [node name="CanvasLayer" type="CanvasLayer" parent="."]
@@ -34,12 +34,12 @@ offset_left = 7.0
 offset_top = 40.0
 offset_right = 145.0
 offset_bottom = 67.0
-max_value = 0.17
+max_value = 0.1
 step = 0.001
 show_percentage = false
 
 [node name="Area2D" type="Area2D" parent="."]
-position = Vector2(604, 517)
+position = Vector2(604, 334)
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="Area2D"]
 shape = SubResource("RectangleShape2D_odxbp")
