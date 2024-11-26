@@ -1,0 +1,26 @@
+[gd_scene load_steps=2 format=3 uid="uid://dsakyn7nsrdkv"]
+
+[ext_resource type="FontFile" uid="uid://brgsmnvep511k" path="res://font/NoonnuBasicGothicRegular.ttf" id="1_citjb"]
+
+[node name="MainUI" type="Control"]
+layout_mode = 3
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+
+[node name="ScoreContainer" type="CenterContainer" parent="."]
+layout_mode = 1
+anchors_preset = -1
+anchor_right = 1.0
+anchor_bottom = 0.3
+offset_top = 50.0
+grow_horizontal = 2
+
+[node name="Score" type="Label" parent="ScoreContainer"]
+layout_mode = 2
+theme_override_fonts/font = ExtResource("1_citjb")
+theme_override_font_sizes/font_size = 100
+text = "3298"
+max_lines_visible = 1
