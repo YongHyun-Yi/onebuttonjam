@@ -13,8 +13,9 @@ func _ready() -> void:
 
 # Called every frame. 'delta' is the elapsed time since the previous frame.
 func _process(delta: float) -> void:
-	if target != null:
-		look_at(target.global_position)
+	#if target != null:
+		#look_at(target.global_position)
+	look_at(get_global_mouse_position())
 	pass
 
 func normal_pressed() -> void:
