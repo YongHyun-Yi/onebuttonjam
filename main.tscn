@@ -33,3 +33,6 @@ offset_bottom = 147.0
 position = Vector2(584, 350)
 
 [connection signal="timeout" from="Timer" to="." method="_on_timer_timeout"]
+[connection signal="double_press" from="StempSystem" to="Scissors" method="double_pressed"]
+[connection signal="long_press" from="StempSystem" to="Scissors" method="long_pressed"]
+[connection signal="normal_press" from="StempSystem" to="Scissors" method="normal_pressed"]
