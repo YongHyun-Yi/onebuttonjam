@@ -1,15 +1,13 @@
-[gd_scene load_steps=7 format=3 uid="uid://dp4nqud5hjs4"]
+[gd_scene load_steps=5 format=3 uid="uid://dp4nqud5hjs4"]
 
 [ext_resource type="Script" path="res://main.gd" id="1_3c0rp"]
-[ext_resource type="PackedScene" uid="uid://cgp0hx0rcyoy8" path="res://red_docu/red_docu.tscn" id="2_3fhu4"]
-[ext_resource type="PackedScene" uid="uid://cirwmp6ohvygf" path="res://green_docu/green_docu.tscn" id="3_u4ru1"]
-[ext_resource type="PackedScene" uid="uid://b8fvl1jchibn2" path="res://blue_docu/blue_docu.tscn" id="4_rruhr"]
+[ext_resource type="PackedScene" uid="uid://uudw06qumf5x" path="res://paper/paper.tscn" id="2_sr16o"]
 [ext_resource type="PackedScene" uid="uid://pmo4uml7kbgf" path="res://Click3WaySystem/Click3WaySystem.tscn" id="5_a6li4"]
 [ext_resource type="PackedScene" uid="uid://bvy8a4x0u8kks" path="res://scissors/scissors.tscn" id="6_6o4hs"]
 
 [node name="Main" type="Node2D"]
 script = ExtResource("1_3c0rp")
-docu_types = Array[PackedScene]([ExtResource("2_3fhu4"), ExtResource("3_u4ru1"), ExtResource("4_rruhr")])
+PaperTypes = Array[PackedScene]([ExtResource("2_sr16o")])
 
 [node name="ColorRect" type="ColorRect" parent="."]
 offset_right = 1155.0
@@ -17,12 +15,13 @@ offset_bottom = 652.0
 color = Color(0.351563, 0.326178, 0.119476, 1)
 metadata/_edit_lock_ = true
 
-[node name="DocuHolder" type="Node2D" parent="."]
-position = Vector2(378, 83)
+[node name="PaperHolder" type="Node2D" parent="."]
+position = Vector2(581, 350)
 
 [node name="Timer" type="Timer" parent="."]
+autostart = true
 
-[node name="docu_arr" type="Label" parent="."]
+[node name="PaperArr" type="Label" parent="."]
 offset_left = 16.0
 offset_top = 90.0
 offset_right = 221.0
