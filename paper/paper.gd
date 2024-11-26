@@ -20,3 +20,9 @@ func normal_pressed() -> void:
 	$after.show()
 	$CollisionShape2D.disabled = true
 	pass
+
+func double_pressed() -> void:
+	pass
+
+func long_pressed() -> void:
+	pass

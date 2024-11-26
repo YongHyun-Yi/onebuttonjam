@@ -34,13 +34,13 @@ func long_pressed() -> void:
 func _on_area_2d_body_entered(body: Node2D) -> void:
 	# 이전에 추적중인 종가 있다면 signal을 모두 disconnect 한다
 	if target != null:
-		normal_press.disconnect(target.normal_press)
-		double_press.disconnect(target.double_press)
-		long_press.disconnect(target.long_press)
+		normal_press.disconnect(target.normal_pressed)
+		double_press.disconnect(target.double_pressed)
+		long_press.disconnect(target.long_pressed)
 	
 	# 새 목표 문서에 signal을 connect
 	target = body
-	normal_press.connect(target.normal_press)
-	double_press.connect(target.double_press)
-	long_press.connect(target.long_press)
+	normal_press.connect(target.normal_pressed)
+	double_press.connect(target.double_pressed)
+	long_press.connect(target.long_pressed)
 	pass # Replace with function body.
