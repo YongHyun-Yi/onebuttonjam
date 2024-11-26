@@ -40,7 +40,7 @@ func _on_area_2d_body_entered(body: Node2D) -> void:
 	
 	# 새 목표 문서에 signal을 connect
 	target = body
-	normal_press.connect(target.nor mal_press)
+	normal_press.connect(target.normal_press)
 	double_press.connect(target.double_press)
 	long_press.connect(target.long_press)
 	pass # Replace with function body.
