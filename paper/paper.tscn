@@ -1,0 +1,81 @@
+[gd_scene load_steps=3 format=3 uid="uid://uudw06qumf5x"]
+
+[ext_resource type="Script" path="res://paper/paper.gd" id="1_qnxbi"]
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_x8ymx"]
+size = Vector2(207, 138)
+
+[node name="Paper" type="CharacterBody2D"]
+motion_mode = 1
+script = ExtResource("1_qnxbi")
+
+[node name="before" type="Control" parent="."]
+layout_mode = 3
+anchors_preset = 0
+offset_right = 40.0
+offset_bottom = 40.0
+
+[node name="ColorRect" type="ColorRect" parent="before"]
+offset_left = -59.0
+offset_top = -92.0
+offset_right = 69.0
+offset_bottom = 105.0
+rotation = 1.5708
+pivot_offset = Vector2(63, 92)
+
+[node name="ReferenceRect" type="ReferenceRect" parent="before"]
+offset_left = -59.0
+offset_top = -92.0
+offset_right = 69.0
+offset_bottom = 105.0
+rotation = 1.5708
+pivot_offset = Vector2(63, 92)
+border_color = Color(0, 0, 0, 1)
+border_width = 3.0
+
+[node name="after" type="Control" parent="."]
+visible = false
+layout_mode = 3
+anchors_preset = 0
+offset_right = 40.0
+offset_bottom = 40.0
+
+[node name="ColorRect" type="ColorRect" parent="after"]
+offset_left = -59.0
+offset_top = -92.0
+offset_right = -20.0
+offset_bottom = 105.0
+rotation = 1.5708
+pivot_offset = Vector2(63, 92)
+
+[node name="ReferenceRect" type="ReferenceRect" parent="after"]
+offset_left = -59.0
+offset_top = -92.0
+offset_right = -18.0
+offset_bottom = 105.0
+rotation = 1.5708
+pivot_offset = Vector2(63, 92)
+border_color = Color(0, 0, 0, 1)
+border_width = 3.0
+
+[node name="ColorRect2" type="ColorRect" parent="after"]
+offset_left = -59.0
+offset_top = -5.0
+offset_right = -18.0
+offset_bottom = 192.0
+rotation = 1.5708
+pivot_offset = Vector2(63, 92)
+
+[node name="ReferenceRect2" type="ReferenceRect" parent="after"]
+offset_left = -59.0
+offset_top = -6.0
+offset_right = -17.0
+offset_bottom = 191.0
+rotation = 1.5708
+pivot_offset = Vector2(63, 92)
+border_color = Color(0, 0, 0, 1)
+border_width = 3.0
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="."]
+position = Vector2(-2.5, 2)
+shape = SubResource("RectangleShape2D_x8ymx")
