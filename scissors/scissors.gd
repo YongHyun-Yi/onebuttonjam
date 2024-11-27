@@ -21,9 +21,24 @@ func _process(delta: float) -> void:
 		var nearest_paper = find_nearest_paper(papers)
 		if target == null:
 			target = nearest_paper
+			target.targetted()
+			if not multiple_attack:
+				normal_press.connect(target.normal_pressed)
+				double_press.connect(target.double_pressed)
+				long_press.connect(target.long_pressed)
 		else:
 			if global_position.distance_to(target.global_position) > global_position.distance_to(nearest_paper.global_position):
+				if not multiple_attack:
+					normal_press.disconnect(target.normal_pressed)
+					double_press.disconnect(target.double_pressed)
+					long_press.disconnect(target.long_pressed)
+				target.untargetted()
 				target = nearest_paper
+				target.targetted()
+				if not multiple_attack:
+					normal_press.connect(target.normal_pressed)
+					double_press.connect(target.double_pressed)
+					long_press.connect(target.long_pressed)
 	
 	if target != null:
 		var rot_deg = rad_to_deg(global_position.angle_to_point(target.global_position))
@@ -44,13 +59,14 @@ func long_pressed() -> void:
 	pass
 
 # 공격 범위용 area, 여러 대상을 추적한다
+# 다중 공격 - 매번 새로 들어오는 대상에 signal을 연결한다
+# 단일 공격 - target만 signal을 연결한다, target 교체시 이전 target은 disconnect 한다
 func _attack_area_body_entered(body: Node2D) -> void:
-	if not multiple_attack and $attack_area.has_overlapping_bodies():
-		pass
-	# 새 목표에 공격 관련 signal을 connect 한다
-	normal_press.connect(body.normal_pressed)
-	double_press.connect(body.double_pressed)
-	long_press.connect(body.long_pressed)
+	if multiple_attack == true:
+		# 새 목표에 공격 관련 signal을 connect 한다
+		normal_press.connect(body.normal_pressed)
+		double_press.connect(body.double_pressed)
+		long_press.connect(body.long_pressed)
 	
 	# 오버랩 되어있는경우
 	# 가장 위의 종이가 잘리고나서 밑에 있던
@@ -60,9 +76,10 @@ func _attack_area_body_entered(body: Node2D) -> void:
 
 # 공격 범위에서 나가면 관련 시그널을 모두 disconnect 한다
 func _on_attack_area_body_exited(body: Node2D) -> void:
-	normal_press.disconnect(body.normal_pressed)
-	double_press.disconnect(body.double_pressed)
-	long_press.disconnect(body.long_pressed)
+	if multiple_attack == true:
+		normal_press.disconnect(body.normal_pressed)
+		double_press.disconnect(body.double_pressed)
+		long_press.disconnect(body.long_pressed)
 	pass # Replace with function body.
 
 func find_nearest_paper(papers: Array[Node2D]) -> Node2D:
@@ -74,3 +91,9 @@ func find_nearest_paper(papers: Array[Node2D]) -> Node2D:
 			min_distance = distance
 			nearest_paper = paper
 	return nearest_paper
+
+
+func _on_detect_area_body_exited(body: Node2D) -> void:
+	if body == target:
+		target = null
+	pass # Replace with function body.

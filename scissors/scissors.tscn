@@ -11,6 +11,7 @@ radius = 220.111
 
 [node name="Scissors" type="Node2D"]
 script = ExtResource("1_0xbn0")
+multiple_attack = false
 
 [node name="left" type="Sprite2D" parent="."]
 rotation = -1.5708
@@ -36,3 +37,4 @@ shape = SubResource("CircleShape2D_chxj4")
 
 [connection signal="body_entered" from="attack_area" to="." method="_attack_area_body_entered"]
 [connection signal="body_exited" from="attack_area" to="." method="_on_attack_area_body_exited"]
+[connection signal="body_exited" from="detect_area" to="." method="_on_detect_area_body_exited"]
