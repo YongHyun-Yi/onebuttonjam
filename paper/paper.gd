@@ -11,6 +11,7 @@ func _ready() -> void:
 	global_position.y = randf_range(0, 648)
 	
 	direction = global_position.direction_to(get_node("/root/Main/Scissors").global_position)
+	rotation_degrees = rad_to_deg(direction.angle())
 
 func _physics_process(delta: float) -> void:
 	velocity = direction * speed
