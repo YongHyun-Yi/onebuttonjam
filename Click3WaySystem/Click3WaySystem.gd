@@ -1,8 +1,8 @@
 extends Node
 
 # Constants for detection thresholds
-const DOUBLE_TAP_TIME = 0.17  # Maximum interval for double-tap detection
-const LONG_TAP_TIME = 0.5   # Minimum hold time for long tap
+const DOUBLE_TAP_TIME = 0.19  # Maximum interval for double-tap detection
+const LONG_TAP_TIME = 0.35   # Minimum hold time for long tap
 
 signal normal_press
 signal double_press
@@ -17,30 +17,27 @@ var long_tap_triggered = false
 
 func _process(delta):
 	# Handle touch input using actions
+	if Input.is_action_just_pressed("ui_accept"):
+		# Touch started
+		tap_start_time = Time.get_ticks_msec() / 1000.0
+		long_tap_triggered = false
+
 	if Input.is_action_pressed("ui_accept"):
-		if not is_tapping:
-			# Start of a new tap
-			is_tapping = true
-			tap_start_time = Time.get_ticks_msec() / 1000.0
-			long_tap_triggered = false
+		# Check for long tap
+		var current_time = Time.get_ticks_msec() / 1000.0
+		if (current_time - tap_start_time) >= LONG_TAP_TIME and not long_tap_triggered:
+			long_tap_triggered = true
+
+	if Input.is_action_just_released("ui_accept"):
+		# Touch ended
+		var tap_duration = Time.get_ticks_msec() / 1000.0 - tap_start_time
+
+		if long_tap_triggered:
+			emit_signal("long_press")
+			print("long tap")
 		else:
-			# Check for long tap only if the touch is held
-			var current_time = Time.get_ticks_msec() / 1000.0
-			if (current_time - tap_start_time) >= LONG_TAP_TIME:
-				long_tap_triggered = true  # Mark long tap as triggered
-	elif Input.is_action_just_released("ui_accept"):
-		# End of touch: determine the type of tap
-		if is_tapping:
-			var tap_duration = Time.get_ticks_msec() / 1000.0 - tap_start_time
-			is_tapping = false
-			
-			if long_tap_triggered:
-				# If it was a long tap, trigger the long tap handler
-				emit_signal("long_press")
-				print("long tap")
-			else:
-				# Otherwise, check for single or double tap
-				_handle_tap()
+			# Handle single or double tap
+			_handle_tap()
 
 	# Reset double-tap state after DOUBLE_TAP_TIME
 	if last_tap_time > 0.0 and (Time.get_ticks_msec() / 1000.0 - last_tap_time) > DOUBLE_TAP_TIME:

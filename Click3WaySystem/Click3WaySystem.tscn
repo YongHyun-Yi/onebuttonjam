@@ -2,7 +2,7 @@
 
 [ext_resource type="Script" path="res://Click3WaySystem/Click3WaySystem.gd" id="1_fb50p"]
 
-[node name="Click3WaySystem" type="Node2D"]
+[node name="Click3WaySystem" type="Node"]
 script = ExtResource("1_fb50p")
 
 [node name="long_press" type="Timer" parent="."]
