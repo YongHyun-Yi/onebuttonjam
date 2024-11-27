@@ -1,6 +1,7 @@
 extends Node2D
 
 var target: Node2D = null
+@export var multiple_attack = true
 
 signal normal_press
 signal double_press
@@ -17,17 +18,12 @@ func _process(delta: float) -> void:
 	# 오버랩 되어있는것들 중 가장 가까운 것만 추적한다
 	if $detect_area.has_overlapping_bodies():
 		var papers: Array[Node2D] = $detect_area.get_overlapping_bodies()
-		var min_distance: int
-		if target != null:
-			min_distance = abs(global_position.distance_to(target.global_position))
+		var nearest_paper = find_nearest_paper(papers)
+		if target == null:
+			target = nearest_paper
 		else:
-			min_distance = 9999
-		for p in papers:
-			var distance = abs(global_position.distance_to(p.global_position))
-			if min_distance > distance:
-				min_distance = distance
-				target = p
-		
+			if global_position.distance_to(target.global_position) > global_position.distance_to(nearest_paper.global_position):
+				target = nearest_paper
 	
 	if target != null:
 		var rot_deg = rad_to_deg(global_position.angle_to_point(target.global_position))
@@ -49,6 +45,8 @@ func long_pressed() -> void:
 
 # 공격 범위용 area, 여러 대상을 추적한다
 func _attack_area_body_entered(body: Node2D) -> void:
+	if not multiple_attack and $attack_area.has_overlapping_bodies():
+		pass
 	# 새 목표에 공격 관련 signal을 connect 한다
 	normal_press.connect(body.normal_pressed)
 	double_press.connect(body.double_pressed)
@@ -66,3 +64,13 @@ func _on_attack_area_body_exited(body: Node2D) -> void:
 	double_press.disconnect(body.double_pressed)
 	long_press.disconnect(body.long_pressed)
 	pass # Replace with function body.
+
+func find_nearest_paper(papers: Array[Node2D]) -> Node2D:
+	var min_distance = 9999
+	var nearest_paper = null
+	for paper in papers:
+		var distance = abs(global_position.distance_to(paper.global_position))
+		if min_distance > distance:
+			min_distance = distance
+			nearest_paper = paper
+	return nearest_paper
