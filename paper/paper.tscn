@@ -6,8 +6,10 @@
 size = Vector2(207, 138)
 
 [node name="Paper" type="CharacterBody2D"]
+collision_mask = 2
 motion_mode = 1
 script = ExtResource("1_qnxbi")
+speed = 200.0
 
 [node name="before" type="Control" parent="."]
 layout_mode = 3

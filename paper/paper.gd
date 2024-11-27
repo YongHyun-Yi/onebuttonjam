@@ -4,11 +4,13 @@ extends CharacterBody2D
 var direction: Vector2 = Vector2.ZERO
 
 func _ready() -> void:
-	#global_position.x = -500
-	#global_position.x = 1500
-	#global_position.y = -500
-	#global_position.y = 1000
-	pass
+	var rng = RandomNumberGenerator.new()
+	rng.randomize()
+	
+	global_position.x = randf_range(0, 1152)
+	global_position.y = randf_range(0, 648)
+	
+	direction = global_position.direction_to(get_node("/root/Main/Scissors").global_position)
 
 func _physics_process(delta: float) -> void:
 	velocity = direction * speed
