@@ -17,6 +17,14 @@ func _physics_process(delta: float) -> void:
 
 	move_and_slide()
 
+func targetted() -> void:
+	$before/ReferenceRect.border_color = Color.CRIMSON
+	pass
+
+func untargetted() -> void:
+	$before/ReferenceRect.border_color = Color.BLACK
+	pass
+
 func normal_pressed() -> void:
 	$before.hide()
 	$after.show()
