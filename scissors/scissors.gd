@@ -22,6 +22,7 @@ func _process(delta: float) -> void:
 		if target == null:
 			target = nearest_paper
 			target.targetted()
+			# bug - signal 은 attack_area에 맞춰서 설정
 			if not multiple_attack:
 				normal_press.connect(target.normal_pressed)
 				double_press.connect(target.double_pressed)
