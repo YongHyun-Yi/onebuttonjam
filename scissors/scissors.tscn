@@ -1,10 +1,13 @@
-[gd_scene load_steps=4 format=3 uid="uid://bvy8a4x0u8kks"]
+[gd_scene load_steps=5 format=3 uid="uid://bvy8a4x0u8kks"]
 
 [ext_resource type="Script" path="res://scissors/scissors.gd" id="1_0xbn0"]
 [ext_resource type="Texture2D" uid="uid://xoxdlm711285" path="res://sprites/scissor.png" id="2_em1j6"]
 
 [sub_resource type="CircleShape2D" id="CircleShape2D_g8neq"]
 radius = 63.0714
+
+[sub_resource type="CircleShape2D" id="CircleShape2D_chxj4"]
+radius = 220.111
 
 [node name="Scissors" type="Node2D"]
 script = ExtResource("1_0xbn0")
@@ -18,10 +21,17 @@ rotation = -1.5708
 texture = ExtResource("2_em1j6")
 flip_h = true
 
-[node name="Area2D" type="Area2D" parent="."]
+[node name="attack_area" type="Area2D" parent="."]
 collision_layer = 2
 
-[node name="CollisionShape2D" type="CollisionShape2D" parent="Area2D"]
+[node name="CollisionShape2D" type="CollisionShape2D" parent="attack_area"]
 shape = SubResource("CircleShape2D_g8neq")
 
-[connection signal="body_entered" from="Area2D" to="." method="_on_area_2d_body_entered"]
+[node name="detect_area" type="Area2D" parent="."]
+collision_layer = 2
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="detect_area"]
+shape = SubResource("CircleShape2D_chxj4")
+
+[connection signal="body_entered" from="attack_area" to="." method="_attack_area_body_entered"]
+[connection signal="body_exited" from="attack_area" to="." method="_on_attack_area_body_exited"]
