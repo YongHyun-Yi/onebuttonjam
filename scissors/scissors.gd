@@ -30,7 +30,9 @@ func _process(delta: float) -> void:
 		
 	
 	if target != null:
-		look_at(target.global_position)
+		var rot_deg = rad_to_deg(global_position.angle_to_point(target.global_position))
+		rot_deg = lerp(rotation_degrees, rot_deg, .2)
+		rotation_degrees = rot_deg
 	pass
 
 func normal_pressed() -> void:
