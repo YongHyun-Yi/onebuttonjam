@@ -2,7 +2,7 @@
 
 [ext_resource type="Script" path="res://Click3WaySystem/Click3WaySystem.gd" id="1_fb50p"]
 
-[node name="Click3WaySystem" type="Node"]
+[node name="Click3WaySystem" type="Node2D"]
 script = ExtResource("1_fb50p")
 
 [node name="long_press" type="Timer" parent="."]
@@ -41,6 +41,3 @@ offset_bottom = 102.0
 max_value = 0.3
 step = 0.001
 show_percentage = false
-
-[connection signal="timeout" from="long_press" to="." method="_on_long_press_timeout"]
-[connection signal="timeout" from="double_press" to="." method="_on_double_press_timeout"]
