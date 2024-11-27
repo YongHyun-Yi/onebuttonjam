@@ -3,8 +3,8 @@
 [ext_resource type="Script" path="res://scissors/scissors.gd" id="1_0xbn0"]
 [ext_resource type="Texture2D" uid="uid://xoxdlm711285" path="res://sprites/scissor.png" id="2_em1j6"]
 
-[sub_resource type="CircleShape2D" id="CircleShape2D_g8neq"]
-radius = 63.0714
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_xxbeq"]
+size = Vector2(98, 42)
 
 [sub_resource type="CircleShape2D" id="CircleShape2D_chxj4"]
 radius = 220.111
@@ -25,7 +25,8 @@ flip_h = true
 collision_layer = 2
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="attack_area"]
-shape = SubResource("CircleShape2D_g8neq")
+position = Vector2(26, 1)
+shape = SubResource("RectangleShape2D_xxbeq")
 
 [node name="detect_area" type="Area2D" parent="."]
 collision_layer = 2
