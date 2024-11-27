@@ -16,7 +16,6 @@ color = Color(0.351563, 0.326178, 0.119476, 1)
 metadata/_edit_lock_ = true
 
 [node name="PaperHolder" type="Node2D" parent="."]
-position = Vector2(581, 350)
 
 [node name="Timer" type="Timer" parent="."]
 autostart = true

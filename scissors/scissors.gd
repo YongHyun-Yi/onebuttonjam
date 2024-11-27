@@ -32,6 +32,7 @@ func long_pressed() -> void:
 
 # area에 들어온 종 하나만 추적한다
 func _on_area_2d_body_entered(body: Node2D) -> void:
+	print("body entered!")
 	# 이전에 추적중인 종가 있다면 signal을 모두 disconnect 한다
 	if target != null:
 		normal_press.disconnect(target.normal_pressed)
@@ -43,4 +44,8 @@ func _on_area_2d_body_entered(body: Node2D) -> void:
 	normal_press.connect(target.normal_pressed)
 	double_press.connect(target.double_pressed)
 	long_press.connect(target.long_pressed)
+	
+	# 오버랩 되어있는경우
+	# 가장 위의 종이가 잘리고나서 밑에 있던
+	# 이전 종이에도 효과가 미치도록 해야한다
 	pass # Replace with function body.

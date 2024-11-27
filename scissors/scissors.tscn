@@ -4,7 +4,7 @@
 [ext_resource type="Texture2D" uid="uid://xoxdlm711285" path="res://sprites/scissor.png" id="2_em1j6"]
 
 [sub_resource type="CircleShape2D" id="CircleShape2D_g8neq"]
-radius = 101.4
+radius = 63.0714
 
 [node name="Scissors" type="Node2D"]
 script = ExtResource("1_0xbn0")
