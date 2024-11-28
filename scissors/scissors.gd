@@ -11,6 +11,22 @@ signal long_press
 func _ready() -> void:
 	pass # Replace with function body.
 
+# 가위 모션
+func _unhandled_input(event: InputEvent) -> void:
+	var tween1 = get_tree().create_tween()
+	tween1.set_ease(Tween.EASE_OUT)
+	tween1.set_trans(Tween.TRANS_QUART)
+	
+	var tween2 = get_tree().create_tween()
+	tween2.set_ease(Tween.EASE_OUT)
+	tween2.set_trans(Tween.TRANS_QUART)
+	
+	if Input.is_action_just_pressed("ui_accept"):
+		tween1.tween_property($left, "rotation_degrees", -20, .15)
+		tween2.tween_property($right, "rotation_degrees", -160, .15)
+	elif Input.is_action_just_released("ui_accept"):
+		tween1.tween_property($left, "rotation_degrees", -90, .3)
+		tween2.tween_property($right, "rotation_degrees", -90, .3)
 
 # Called every frame. 'delta' is the elapsed time since the previous frame.
 func _process(delta: float) -> void:
