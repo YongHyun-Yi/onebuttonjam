@@ -1,6 +1,7 @@
-[gd_scene load_steps=3 format=3 uid="uid://uudw06qumf5x"]
+[gd_scene load_steps=4 format=3 uid="uid://uudw06qumf5x"]
 
 [ext_resource type="Script" path="res://paper/paper.gd" id="1_qnxbi"]
+[ext_resource type="Texture2D" uid="uid://xoxdlm711285" path="res://sprites/scissor.png" id="2_6j61q"]
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_x8ymx"]
 size = Vector2(207, 138)
@@ -90,3 +91,19 @@ editor_only = false
 [node name="CollisionShape2D" type="CollisionShape2D" parent="."]
 position = Vector2(-2.5, 2)
 shape = SubResource("RectangleShape2D_x8ymx")
+
+[node name="PaperParticle" type="CPUParticles2D" parent="."]
+emitting = false
+amount = 2
+one_shot = true
+explosiveness = 1.0
+texture = ExtResource("2_6j61q")
+direction = Vector2(0, -1)
+initial_velocity_min = 443.18
+initial_velocity_max = 443.18
+angular_velocity_min = -90.0
+angular_velocity_max = 90.0
+angle_min = -90.0
+angle_max = 90.0
+
+[connection signal="finished" from="PaperParticle" to="." method="_on_paper_particle_finished"]

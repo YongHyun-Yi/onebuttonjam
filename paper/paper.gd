@@ -12,6 +12,7 @@ func _ready() -> void:
 	
 	direction = global_position.direction_to(get_node("/root/Main/Scissors").global_position)
 	rotation_degrees = rad_to_deg(direction.angle())
+	$PaperParticle.rotation_degrees = -rotation_degrees
 
 func _physics_process(delta: float) -> void:
 	velocity = direction * speed
@@ -28,8 +29,9 @@ func untargetted() -> void:
 
 func normal_pressed() -> void:
 	$before.hide()
-	$after.show()
+	#$after.show()
 	$CollisionShape2D.disabled = true
+	$PaperParticle.emitting = true
 	pass
 
 func double_pressed() -> void:
@@ -37,3 +39,8 @@ func double_pressed() -> void:
 
 func long_pressed() -> void:
 	pass
+
+
+func _on_paper_particle_finished() -> void:
+	queue_free()
+	pass # Replace with function body.
