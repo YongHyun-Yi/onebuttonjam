@@ -28,8 +28,7 @@ func untargetted() -> void:
 	pass
 
 func normal_pressed() -> void:
-	$before.hide()
-	#$after.show()
+	$Sprite2D.hide()
 	$CollisionShape2D.disabled = true
 	$PaperParticle.emitting = true
 	pass
