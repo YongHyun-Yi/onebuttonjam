@@ -32,5 +32,4 @@ offset_bottom = 147.0
 position = Vector2(584, 350)
 
 [connection signal="timeout" from="Timer" to="." method="_on_timer_timeout"]
-[connection signal="long_press" from="Click3WaySystem" to="Scissors" method="long_pressed"]
-[connection signal="normal_press" from="Click3WaySystem" to="Scissors" method="normal_pressed"]
+[connection signal="to_long_tap" from="Click3WaySystem" to="Scissors" method="to_long_tap"]

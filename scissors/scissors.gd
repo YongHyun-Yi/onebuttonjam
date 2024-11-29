@@ -1,10 +1,12 @@
 extends Node2D
 
+enum ScissorsState {SINGLE_TAP, LONG_TAP}
+var state: ScissorsState = ScissorsState.SINGLE_TAP
 var target: Node2D = null
 @export var multiple_attack = true
 
 signal normal_press
-signal double_press
+#signal double_press
 signal long_press
 
 # Called when the node enters the scene tree for the first time.
@@ -29,6 +31,8 @@ func _unhandled_input(event: InputEvent) -> void:
 	elif Input.is_action_just_released("ui_accept"):
 		tween1.tween_property($left, "rotation_degrees", -90, .3)
 		tween2.tween_property($right, "rotation_degrees", -90, .3)
+		tap_handler()
+		state = ScissorsState.SINGLE_TAP
 	
 	# 가위의 attack_area는 탭을 놓을때 토글된다
 
@@ -55,18 +59,34 @@ func _process(delta: float) -> void:
 		rotation_degrees = rot_deg
 	pass
 
-func normal_pressed() -> void:
-	emit_signal("normal_press")
-	print("normal press")
-	pass
+#func normal_pressed() -> void:
+	#emit_signal("normal_press")
+	#print("normal press")
+	#pass
 
 #func double_pressed() -> void:
 	#emit_signal("double_press")
 	#pass
 
-func long_pressed() -> void:
-	emit_signal("long_press")
-	print("long press")
+#func long_pressed() -> void:
+	#emit_signal("long_press")
+	#print("long press")
+	#pass
+
+func to_long_tap() -> void:
+	state = ScissorsState.LONG_TAP
+	print("change to long tap")
+	pass
+
+# 여기서 attack area를 toggle한다
+# state별 움직임을 구현한다
+func tap_handler() -> void:
+	if state == ScissorsState.SINGLE_TAP:
+		print("single tap")
+		emit_signal("normal_press")
+	else:
+		print("long tap")
+		emit_signal("long_press")
 	pass
 
 # 공격 범위용 area, 여러 대상을 추적한다
@@ -74,14 +94,14 @@ func long_pressed() -> void:
 func _attack_area_body_entered(body: Node2D) -> void:
 	# 새 목표에 공격 관련 signal을 connect 한다
 	normal_press.connect(body.normal_pressed)
-	double_press.connect(body.double_pressed)
+	#double_press.connect(body.double_pressed)
 	long_press.connect(body.long_pressed)
 	pass # Replace with function body.
 
 # 공격 범위에서 나가면 관련 시그널을 모두 disconnect 한다
 func _on_attack_area_body_exited(body: Node2D) -> void:
 	normal_press.disconnect(body.normal_pressed)
-	double_press.disconnect(body.double_pressed)
+	#double_press.disconnect(body.double_pressed)
 	long_press.disconnect(body.long_pressed)
 	pass # Replace with function body.
 
