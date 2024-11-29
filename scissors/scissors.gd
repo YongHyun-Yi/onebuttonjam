@@ -57,14 +57,16 @@ func _process(delta: float) -> void:
 
 func normal_pressed() -> void:
 	emit_signal("normal_press")
+	print("normal press")
 	pass
 
-func double_pressed() -> void:
-	emit_signal("double_press")
-	pass
+#func double_pressed() -> void:
+	#emit_signal("double_press")
+	#pass
 
 func long_pressed() -> void:
 	emit_signal("long_press")
+	print("long press")
 	pass
 
 # 공격 범위용 area, 여러 대상을 추적한다
