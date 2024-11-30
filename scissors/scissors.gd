@@ -1,9 +1,9 @@
 extends Node2D
 
-enum ScissorsState {SINGLE_TAP, LONG_TAP}
-var state: ScissorsState = ScissorsState.SINGLE_TAP
+var is_focus: bool = false
+var focus_array: Array[Node2D]
+var focus_array_idx: int = 0
 var target: Node2D = null
-@export var multiple_attack = true
 
 signal normal_press
 #signal double_press
@@ -32,7 +32,10 @@ func _unhandled_input(event: InputEvent) -> void:
 		tween1.tween_property($left, "rotation_degrees", -90, .3)
 		tween2.tween_property($right, "rotation_degrees", -90, .3)
 		tap_handler()
-		state = ScissorsState.SINGLE_TAP
+		if is_focus == true:
+			is_focus = false
+			get_tree().paused = false
+			$FocusTimer.stop()
 	
 	# 가위의 attack_area는 탭을 놓을때 토글된다
 
@@ -46,17 +49,20 @@ func _process(delta: float) -> void:
 		if target == null:
 			target = nearest_paper
 			target.targetted()
-		else:
-			if global_position.distance_to(target.global_position) > global_position.distance_to(nearest_paper.global_position):
-				target.untargetted()
-				target = nearest_paper
-				target.targetted()
+		#else:
+			#if global_position.distance_to(target.global_position) > global_position.distance_to(nearest_paper.global_position):
+				#target.untargetted()
+				#target = nearest_paper
+				#target.targetted()
+	$focus_area.global_rotation_degrees = 0
 	
 	# 타겟이 존재하면 바라볼 방향을 보간한다
 	if target != null:
 		var rot_deg = rad_to_deg(global_position.angle_to_point(target.global_position))
 		rot_deg = lerp(rotation_degrees, rot_deg, .2)
 		rotation_degrees = rot_deg
+		$Line2D.points[1] = target.global_position - global_position
+		$Line2D.global_rotation_degrees = 0
 	pass
 
 #func normal_pressed() -> void:
@@ -73,20 +79,19 @@ func _process(delta: float) -> void:
 	#print("long press")
 	#pass
 
-func to_long_tap() -> void:
-	state = ScissorsState.LONG_TAP
-	print("change to long tap")
+func to_focus_mode() -> void:
+	is_focus = true
+	# 집중모드 진입시에만 목록 갱신
+	focus_array = $focus_area.get_overlapping_bodies()
+	$FocusTimer.start()
 	pass
 
 # 여기서 attack area를 toggle한다
 # state별 움직임을 구현한다
 func tap_handler() -> void:
-	if state == ScissorsState.SINGLE_TAP:
-		print("single tap")
-		emit_signal("normal_press")
-	else:
-		print("long tap")
-		emit_signal("long_press")
+	# target을 향해 순간이동한다
+	# collision shape를 잠시 토글한다
+	# 시그널 사용보다는 여기서 메소드를 직접 호출한다
 	pass
 
 # 공격 범위용 area, 여러 대상을 추적한다
@@ -119,4 +124,14 @@ func find_nearest_paper(papers: Array[Node2D]) -> Node2D:
 func _on_detect_area_body_exited(body: Node2D) -> void:
 	if body == target:
 		target = null
+	pass # Replace with function body.
+
+
+func _on_focus_timer_timeout() -> void:
+	if focus_array.size() > 0 && is_focus == true:
+		target = focus_array[focus_array_idx]
+		print("target update: " + str(target.name))
+		focus_array_idx += 1
+		if focus_array_idx >= focus_array.size():
+			focus_array_idx = 0
 	pass # Replace with function body.

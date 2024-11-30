@@ -37,3 +37,8 @@ func _on_timer_timeout() -> void:
 	PaperType = 0 # test
 	var PaperIns = PaperTypes[PaperType].instantiate()
 	PaperArr.push_back(PaperIns)
+
+
+func _on_click_3_way_system_to_long_tap() -> void:
+	get_tree().paused = true
+	pass # Replace with function body.
