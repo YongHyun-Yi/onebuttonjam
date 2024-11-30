@@ -25,12 +25,12 @@ func _unhandled_input(event: InputEvent) -> void:
 	
 	# 벌리기
 	if Input.is_action_just_pressed("ui_accept"):
-		tween1.tween_property($left, "rotation_degrees", -20, .15)
-		tween2.tween_property($right, "rotation_degrees", -160, .15)
+		tween1.tween_property($sprite/left, "rotation_degrees", -20, .15)
+		tween2.tween_property($sprite/right, "rotation_degrees", -160, .15)
 	# 오므리기
 	elif Input.is_action_just_released("ui_accept"):
-		tween1.tween_property($left, "rotation_degrees", -90, .3)
-		tween2.tween_property($right, "rotation_degrees", -90, .3)
+		tween1.tween_property($sprite/left, "rotation_degrees", -90, .3)
+		tween2.tween_property($sprite/right, "rotation_degrees", -90, .3)
 		if is_focus == true:
 			is_focus = false
 			get_tree().paused = false
