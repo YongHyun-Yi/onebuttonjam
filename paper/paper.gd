@@ -1,14 +1,17 @@
 extends CharacterBody2D
 
+@export var score: int = 10
 @export var speed: float = 5.0
 var direction: Vector2 = Vector2.ZERO
 
 func _ready() -> void:
 	var rng = RandomNumberGenerator.new()
 	rng.randomize()
-	
-	global_position.x = randf_range(0, 1152)
-	global_position.y = randf_range(0, 648)
+	var viewport_size = get_viewport().size
+	var create_margin = 200
+	# 생성 위치 화면 해상도에 맞춰 보정
+	global_position.x = randf_range(0 - create_margin, viewport_size.x + create_margin)
+	global_position.y = randf_range(0 - create_margin, viewport_size.y + create_margin)
 	
 	direction = global_position.direction_to(get_node("/root/Main/Scissors").global_position)
 	rotation_degrees = rad_to_deg(direction.angle())
@@ -31,6 +34,7 @@ func normal_pressed() -> void:
 	$Sprite2D.hide()
 	$CollisionShape2D.set_deferred("disabled", true)
 	$PaperParticle.emitting = true
+	get_node("/root/Main").update_score(score)
 	pass
 
 func double_pressed() -> void:

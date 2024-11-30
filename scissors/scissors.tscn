@@ -56,10 +56,10 @@ rotation = 1.5708
 shape = SubResource("CapsuleShape2D_sysxh")
 
 [node name="attack_line" type="Line2D" parent="."]
-points = PackedVector2Array(0, 0, 500, 0)
+points = PackedVector2Array(0, 0, 0, 0)
 gradient = SubResource("Gradient_ewjwl")
 
-[node name="Line2D" type="Line2D" parent="."]
+[node name="target_line" type="Line2D" parent="."]
 points = PackedVector2Array(0, 0, 0, 0)
 width = 3.0
 default_color = Color(1, 0, 0, 1)

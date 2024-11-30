@@ -41,6 +41,9 @@ func _unhandled_input(event: InputEvent) -> void:
 			$attack_line.points[1] = $attack_area/CollisionShape2D.shape.b
 			$attack_area/CollisionShape2D.disabled = false
 			global_position = target.global_position
+			# 화면 밖으로 나가지 않도록 보정
+			global_position.x = clamp(global_position.x, 0, get_viewport().size.x)
+			global_position.y = clamp(global_position.y, 0, get_viewport().size.y)
 			await get_tree().create_timer(0.2).timeout
 			$attack_area/CollisionShape2D.disabled = true
 	# 가위의 attack_area는 탭을 놓을때 토글된다
@@ -62,14 +65,14 @@ func _process(delta: float) -> void:
 				#target = nearest_paper
 				#target.targetted()
 	else:
-		$Line2D.points[1] = Vector2.ZERO
+		$target_line.points[1] = Vector2.ZERO
 	
 	# 타겟이 존재하면 바라볼 방향을 보간한다
 	if target != null:
 		var rot_deg = rad_to_deg(global_position.angle_to_point(target.global_position))
 		rot_deg = lerp($sprite.rotation_degrees, rot_deg, .2)
 		$sprite.rotation_degrees = rot_deg
-		$Line2D.points[1] = target.global_position - global_position
+		$target_line.points[1] = target.global_position - global_position
 	
 	$attack_line.points[1] = lerp($attack_line.points[1], Vector2.ZERO, 0.1)
 	pass
