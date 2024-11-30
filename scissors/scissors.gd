@@ -31,38 +31,47 @@ func _unhandled_input(event: InputEvent) -> void:
 	elif Input.is_action_just_released("ui_accept"):
 		tween1.tween_property($left, "rotation_degrees", -90, .3)
 		tween2.tween_property($right, "rotation_degrees", -90, .3)
-		tap_handler()
 		if is_focus == true:
 			is_focus = false
 			get_tree().paused = false
 			$FocusTimer.stop()
-	
+			focus_array_idx = 0
+		if target != null:
+			$attack_area/CollisionShape2D.shape.b = global_position - target.global_position
+			$attack_line.points[1] = $attack_area/CollisionShape2D.shape.b
+			$attack_area/CollisionShape2D.disabled = false
+			global_position = target.global_position
+			await get_tree().create_timer(0.2).timeout
+			$attack_area/CollisionShape2D.disabled = true
 	# 가위의 attack_area는 탭을 놓을때 토글된다
 
 # Called every frame. 'delta' is the elapsed time since the previous frame.
 func _process(delta: float) -> void:
 	# 가위가 바라볼 대상, 단 하나만 추적한다
 	# 타겟이 사라지면 오버랩 되어있는것들 중 가장 가까운 것만 추적한다
-	if $detect_area.has_overlapping_bodies():
-		var papers: Array[Node2D] = $detect_area.get_overlapping_bodies()
-		var nearest_paper = find_nearest_paper(papers)
-		if target == null:
+	if target == null:
+		if $detect_area.has_overlapping_bodies():
+			var papers: Array[Node2D] = $detect_area.get_overlapping_bodies()
+			var nearest_paper = find_nearest_paper(papers)
 			target = nearest_paper
 			target.targetted()
+			print("target update!")
 		#else:
 			#if global_position.distance_to(target.global_position) > global_position.distance_to(nearest_paper.global_position):
 				#target.untargetted()
 				#target = nearest_paper
 				#target.targetted()
-	$focus_area.global_rotation_degrees = 0
+	else:
+		$Line2D.points[1] = Vector2.ZERO
 	
 	# 타겟이 존재하면 바라볼 방향을 보간한다
 	if target != null:
 		var rot_deg = rad_to_deg(global_position.angle_to_point(target.global_position))
-		rot_deg = lerp(rotation_degrees, rot_deg, .2)
-		rotation_degrees = rot_deg
+		rot_deg = lerp($sprite.rotation_degrees, rot_deg, .2)
+		$sprite.rotation_degrees = rot_deg
 		$Line2D.points[1] = target.global_position - global_position
-		$Line2D.global_rotation_degrees = 0
+	
+	$attack_line.points[1] = lerp($attack_line.points[1], Vector2.ZERO, 0.1)
 	pass
 
 #func normal_pressed() -> void:
@@ -98,16 +107,20 @@ func tap_handler() -> void:
 # 무조건 범위 공격으로 변경
 func _attack_area_body_entered(body: Node2D) -> void:
 	# 새 목표에 공격 관련 signal을 connect 한다
-	normal_press.connect(body.normal_pressed)
+	#normal_press.connect(body.normal_pressed)
 	#double_press.connect(body.double_pressed)
-	long_press.connect(body.long_pressed)
+	#long_press.connect(body.long_pressed)
+	body.normal_pressed()
+	if body == target:
+		target = null
+		print("need target update")
 	pass # Replace with function body.
 
 # 공격 범위에서 나가면 관련 시그널을 모두 disconnect 한다
 func _on_attack_area_body_exited(body: Node2D) -> void:
-	normal_press.disconnect(body.normal_pressed)
+	#normal_press.disconnect(body.normal_pressed)
 	#double_press.disconnect(body.double_pressed)
-	long_press.disconnect(body.long_pressed)
+	#long_press.disconnect(body.long_pressed)
 	pass # Replace with function body.
 
 func find_nearest_paper(papers: Array[Node2D]) -> Node2D:

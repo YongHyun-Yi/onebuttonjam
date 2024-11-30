@@ -26,6 +26,10 @@ func _process(delta: float) -> void:
 	for i in PaperArr.size():
 		PaperArrItems += PaperArr[i].name + " "
 	$PaperArr.text = PaperArrItems
+	if $Scissors.target != null:
+		$target.text = $Scissors.target.name
+	else:
+		$target.text = "null"
 	pass
 
 

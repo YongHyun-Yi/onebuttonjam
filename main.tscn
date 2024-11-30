@@ -29,6 +29,12 @@ offset_top = 90.0
 offset_right = 221.0
 offset_bottom = 147.0
 
+[node name="target" type="Label" parent="."]
+offset_left = 16.0
+offset_top = 197.0
+offset_right = 221.0
+offset_bottom = 254.0
+
 [node name="Click3WaySystem" parent="." instance=ExtResource("5_a6li4")]
 
 [node name="Scissors" parent="." instance=ExtResource("6_6o4hs")]
