@@ -43,6 +43,7 @@ process_mode = 1
 autostart = true
 
 [node name="PaperArr" type="Label" parent="."]
+visible = false
 offset_left = 16.0
 offset_top = 7.0
 offset_right = 221.0
