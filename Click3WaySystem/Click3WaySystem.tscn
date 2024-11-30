@@ -12,32 +12,3 @@ one_shot = true
 [node name="double_press" type="Timer" parent="."]
 wait_time = 0.14
 one_shot = true
-
-[node name="CanvasLayer" type="CanvasLayer" parent="."]
-
-[node name="ProgressBar" type="ProgressBar" parent="CanvasLayer"]
-offset_left = 7.0
-offset_top = 8.0
-offset_right = 145.0
-offset_bottom = 35.0
-max_value = 0.3
-step = 0.001
-show_percentage = false
-
-[node name="ProgressBar2" type="ProgressBar" parent="CanvasLayer"]
-offset_left = 7.0
-offset_top = 40.0
-offset_right = 145.0
-offset_bottom = 67.0
-max_value = 0.14
-step = 0.001
-show_percentage = false
-
-[node name="ProgressBar3" type="ProgressBar" parent="CanvasLayer"]
-offset_left = 7.0
-offset_top = 75.0
-offset_right = 145.0
-offset_bottom = 102.0
-max_value = 0.3
-step = 0.001
-show_percentage = false

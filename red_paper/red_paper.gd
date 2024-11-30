@@ -1,6 +1,6 @@
 extends CharacterBody2D
 
-@export var score: int = 10
+@export var score: int = -30
 @export var speed: float = 5.0
 var direction: Vector2 = Vector2.ZERO
 

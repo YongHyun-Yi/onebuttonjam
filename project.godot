@@ -11,8 +11,14 @@ config_version=5
 [application]
 
 config/name="OneButtonJam"
-run/main_scene="res://main.tscn"
+run/main_scene="res://title/title_ui.tscn"
 config/features=PackedStringArray("4.3", "GL Compatibility")
+
+[display]
+
+window/size/viewport_width=393
+window/size/viewport_height=852
+window/stretch/mode="viewport"
 
 [editor]
 
