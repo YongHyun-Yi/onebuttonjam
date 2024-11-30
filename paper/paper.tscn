@@ -1,10 +1,14 @@
-[gd_scene load_steps=10 format=3 uid="uid://uudw06qumf5x"]
+[gd_scene load_steps=14 format=3 uid="uid://uudw06qumf5x"]
 
 [ext_resource type="Script" path="res://paper/paper.gd" id="1_qnxbi"]
-[ext_resource type="Texture2D" uid="uid://drvp4cs5s4pin" path="res://sprites/papers/PaperFallingH3.jpg" id="3_4cth1"]
-[ext_resource type="Texture2D" uid="uid://h5hpkimx5t5m" path="res://sprites/papers/PaperFallingH4.jpg" id="4_tbrk4"]
-[ext_resource type="Texture2D" uid="uid://cr0imoxkmo6vv" path="res://sprites/papers/PaperFallingH6.jpg" id="5_a7nvi"]
-[ext_resource type="Texture2D" uid="uid://doc3x0x4hsx0r" path="res://sprites/papers/PaperFallingH7.jpg" id="6_kfqhk"]
+[ext_resource type="Texture2D" uid="uid://id11525jty08" path="res://sprites/papers/PaperParticle.png" id="2_3gr3r"]
+[ext_resource type="Texture2D" uid="uid://yff6aqis78ay" path="res://sprites/papers/PaperFallingH1.png" id="2_ytjoj"]
+[ext_resource type="Texture2D" uid="uid://bqpvi5buvmijk" path="res://sprites/papers/PaperFallingH2.png" id="3_6kmhw"]
+[ext_resource type="Texture2D" uid="uid://dhirwjq7uwatp" path="res://sprites/papers/PaperFallingH3.png" id="4_083vf"]
+[ext_resource type="Texture2D" uid="uid://bdo8fq8b611br" path="res://sprites/papers/PaperFallingH4.png" id="5_fonnv"]
+[ext_resource type="Texture2D" uid="uid://dewrn1v5aponf" path="res://sprites/papers/PaperFallingH5.png" id="6_lstf1"]
+[ext_resource type="Texture2D" uid="uid://blb85awiu2xcc" path="res://sprites/papers/PaperFallingH6.png" id="7_1kxq7"]
+[ext_resource type="Texture2D" uid="uid://voe44ibab5jv" path="res://sprites/papers/PaperFallingH7.png" id="8_wonx3"]
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_x8ymx"]
 size = Vector2(207, 138)
@@ -21,7 +25,7 @@ tracks/0/keys = {
 "times": PackedFloat32Array(0),
 "transitions": PackedFloat32Array(1),
 "update": 1,
-"values": [null]
+"values": [ExtResource("2_ytjoj")]
 }
 
 [sub_resource type="Animation" id="Animation_mt867"]
@@ -38,7 +42,7 @@ tracks/0/keys = {
 "times": PackedFloat32Array(0, 0.1, 0.2, 0.3, 0.4, 0.5, 0.6),
 "transitions": PackedFloat32Array(1, 1, 1, 1, 1, 1, 1),
 "update": 1,
-"values": [null, null, ExtResource("3_4cth1"), ExtResource("4_tbrk4"), null, ExtResource("5_a7nvi"), ExtResource("6_kfqhk")]
+"values": [ExtResource("2_ytjoj"), ExtResource("3_6kmhw"), ExtResource("4_083vf"), ExtResource("5_fonnv"), ExtResource("6_lstf1"), ExtResource("7_1kxq7"), ExtResource("8_wonx3")]
 }
 
 [sub_resource type="AnimationLibrary" id="AnimationLibrary_f2lj3"]
@@ -139,7 +143,7 @@ emitting = false
 amount = 2
 one_shot = true
 explosiveness = 1.0
-texture = ExtResource("6_kfqhk")
+texture = ExtResource("2_3gr3r")
 direction = Vector2(0, -1)
 initial_velocity_min = 443.18
 initial_velocity_max = 443.18
@@ -150,6 +154,7 @@ angle_max = 90.0
 
 [node name="Sprite2D" type="Sprite2D" parent="."]
 position = Vector2(0, -14)
+texture = ExtResource("2_ytjoj")
 
 [node name="AnimationPlayer" type="AnimationPlayer" parent="."]
 libraries = {
