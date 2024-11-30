@@ -6,6 +6,7 @@ var PaperTypeRng = RandomNumberGenerator.new()
 @onready var PaperTimer = get_node("Timer")
 @export var PaperTypes : Array[PackedScene]
 var PaperArr: Array
+var score: int = 0
 
 # Called when the node enters the scene tree for the first time.
 func _ready() -> void:
@@ -13,8 +14,8 @@ func _ready() -> void:
 	PaperTypeRng.randomize()
 	PaperTimer.wait_time = PaperTimerRng.randf_range(0.7, 1.2)
 	for i in 5:
-		var PaperType = PaperTypeRng.randi_range(0, 2)
-		PaperType = 0 # test
+		var PaperType = PaperTypeRng.randi_range(0, PaperTypes.size() - 1)
+		#PaperType = 0 # test
 		var PaperIns = PaperTypes[PaperType].instantiate()
 		PaperArr.push_back(PaperIns)
 	pass # Replace with function body.
@@ -26,23 +27,21 @@ func _process(delta: float) -> void:
 	for i in PaperArr.size():
 		PaperArrItems += PaperArr[i].name + " "
 	$PaperArr.text = PaperArrItems
-	if $Scissors.target != null:
-		$target.text = $Scissors.target.name
-	else:
-		$target.text = "null"
 	pass
-
 
 func _on_timer_timeout() -> void:
 	PaperTimer.wait_time = PaperTimerRng.randf_range(0.7, 1.2)
 	var TmpPaper = PaperArr.pop_front()
 	$PaperHolder.add_child(TmpPaper)
-	var PaperType = PaperTypeRng.randi_range(0, 2)
-	PaperType = 0 # test
+	var PaperType = PaperTypeRng.randi_range(0, PaperTypes.size() - 1)
+	#PaperType = 0 # test
 	var PaperIns = PaperTypes[PaperType].instantiate()
 	PaperArr.push_back(PaperIns)
-
 
 func _on_click_3_way_system_to_long_tap() -> void:
 	get_tree().paused = true
 	pass # Replace with function body.
+
+func update_score(value):
+	score = max(0, score + value)
+	$ScoreLabel.text = str(score)
