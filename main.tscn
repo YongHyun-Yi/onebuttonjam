@@ -1,4 +1,4 @@
-[gd_scene load_steps=8 format=3 uid="uid://dp4nqud5hjs4"]
+[gd_scene load_steps=11 format=3 uid="uid://dp4nqud5hjs4"]
 
 [ext_resource type="Script" path="res://main.gd" id="1_3c0rp"]
 [ext_resource type="PackedScene" uid="uid://uudw06qumf5x" path="res://paper/paper.tscn" id="2_sr16o"]
@@ -6,10 +6,20 @@
 [ext_resource type="FontFile" uid="uid://brgsmnvep511k" path="res://font/NoonnuBasicGothicRegular.ttf" id="5_0rwvr"]
 [ext_resource type="PackedScene" uid="uid://pmo4uml7kbgf" path="res://Click3WaySystem/Click3WaySystem.tscn" id="5_a6li4"]
 [ext_resource type="PackedScene" uid="uid://bvy8a4x0u8kks" path="res://scissors/scissors.tscn" id="6_6o4hs"]
+[ext_resource type="Texture2D" uid="uid://cwmays0c52gic" path="res://sprites/ui_start_button.png" id="7_lg5i7"]
 
 [sub_resource type="LabelSettings" id="LabelSettings_ouut3"]
 font = ExtResource("5_0rwvr")
 font_size = 80
+
+[sub_resource type="LabelSettings" id="LabelSettings_xjwms"]
+font = ExtResource("5_0rwvr")
+font_size = 58
+
+[sub_resource type="LabelSettings" id="LabelSettings_1o1us"]
+font = ExtResource("5_0rwvr")
+font_size = 56
+font_color = Color(0, 0, 0, 1)
 
 [node name="Main" type="Node2D"]
 process_mode = 3
@@ -25,7 +35,10 @@ metadata/_edit_lock_ = true
 [node name="PaperHolder" type="Node2D" parent="."]
 process_mode = 1
 
-[node name="Timer" type="Timer" parent="."]
+[node name="StartPosition" type="Marker2D" parent="."]
+position = Vector2(196, 412)
+
+[node name="PaperTimer" type="Timer" parent="."]
 process_mode = 1
 autostart = true
 
@@ -38,7 +51,7 @@ offset_bottom = 64.0
 [node name="Click3WaySystem" parent="." instance=ExtResource("5_a6li4")]
 
 [node name="Scissors" parent="." instance=ExtResource("6_6o4hs")]
-position = Vector2(202, 416)
+position = Vector2(196, 412)
 
 [node name="ScoreLabel" type="Label" parent="."]
 anchors_preset = 15
@@ -56,6 +69,59 @@ label_settings = SubResource("LabelSettings_ouut3")
 horizontal_alignment = 1
 vertical_alignment = 1
 
-[connection signal="timeout" from="Timer" to="." method="_on_timer_timeout"]
+[node name="TimeProgressBar" type="ProgressBar" parent="."]
+offset_left = 3.0
+offset_top = 4.0
+offset_right = 390.0
+offset_bottom = 13.0
+max_value = 30.0
+value = 30.0
+show_percentage = false
+
+[node name="GameTimer" type="Timer" parent="."]
+wait_time = 30.0
+one_shot = true
+autostart = true
+
+[node name="GameoverLabel" type="Label" parent="."]
+visible = false
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+offset_left = 1.0
+offset_top = 244.0
+offset_right = 394.0
+offset_bottom = 328.0
+grow_horizontal = 2
+grow_vertical = 2
+text = "Game Over"
+label_settings = SubResource("LabelSettings_xjwms")
+horizontal_alignment = 1
+vertical_alignment = 1
+
+[node name="RetryButton" type="TextureButton" parent="."]
+visible = false
+layout_direction = 1
+offset_left = 69.0
+offset_top = 349.0
+offset_right = 325.0
+offset_bottom = 477.0
+texture_normal = ExtResource("7_lg5i7")
+
+[node name="Label" type="Label" parent="RetryButton"]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+text = "Retry"
+label_settings = SubResource("LabelSettings_1o1us")
+horizontal_alignment = 1
+vertical_alignment = 1
+
+[connection signal="timeout" from="PaperTimer" to="." method="_on_timer_timeout"]
 [connection signal="to_long_tap" from="Click3WaySystem" to="." method="_on_click_3_way_system_to_long_tap"]
 [connection signal="to_long_tap" from="Click3WaySystem" to="Scissors" method="to_focus_mode"]
+[connection signal="timeout" from="GameTimer" to="." method="_on_game_timer_timeout"]
+[connection signal="button_up" from="RetryButton" to="." method="_on_start_button_button_up"]
