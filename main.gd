@@ -48,10 +48,10 @@ func _on_click_3_way_system_to_long_tap(PaperArr: Array) -> void:
 	pass # Replace with function body.
 
 func remove_paper(paper, score):
-	update_score(score)
 	PaperArr.erase(paper)
-	max_count += 1
-	print(max_count)
+	if score != 0:
+		update_score(score)
+		max_count += 1
 	while max_count>len(PaperArr):
 		PaperArr.push_back(create_paper())
 
