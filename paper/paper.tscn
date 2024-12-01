@@ -11,7 +11,7 @@
 [ext_resource type="Texture2D" uid="uid://voe44ibab5jv" path="res://sprites/papers/PaperFallingH7.png" id="8_wonx3"]
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_x8ymx"]
-size = Vector2(207, 138)
+size = Vector2(100, 70)
 
 [sub_resource type="Animation" id="Animation_em1e5"]
 length = 0.001
@@ -52,7 +52,7 @@ _data = {
 }
 
 [node name="Paper" type="CharacterBody2D"]
-collision_mask = 2
+collision_mask = 6
 motion_mode = 1
 script = ExtResource("1_qnxbi")
 speed = 200.0

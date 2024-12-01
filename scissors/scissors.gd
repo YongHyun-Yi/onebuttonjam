@@ -52,20 +52,18 @@ func _unhandled_input(event: InputEvent) -> void:
 func _process(delta: float) -> void:
 	# 가위가 바라볼 대상, 단 하나만 추적한다
 	# 타겟이 사라지면 오버랩 되어있는것들 중 가장 가까운 것만 추적한다
-	if target == null:
-		if $detect_area.has_overlapping_bodies():
-			var papers: Array[Node2D] = $detect_area.get_overlapping_bodies()
-			var nearest_paper = find_nearest_paper(papers)
-			target = nearest_paper
-			target.targetted()
-			print("target update!")
-		#else:
-			#if global_position.distance_to(target.global_position) > global_position.distance_to(nearest_paper.global_position):
-				#target.untargetted()
-				#target = nearest_paper
-				#target.targetted()
-	else:
-		$target_line.points[1] = Vector2.ZERO
+	if not is_focus and $detect_area.has_overlapping_bodies():
+		var papers: Array[Node2D] = $detect_area.get_overlapping_bodies()
+		var nearest_paper = find_nearest_paper(papers)
+		if target != null:
+			target.untargetted()
+		target = nearest_paper
+		target.targetted()
+	#else:
+		#if global_position.distance_to(target.global_position) > global_position.distance_to(nearest_paper.global_position):
+			#target.untargetted()
+			#target = nearest_paper
+			#target.targetted()
 	
 	# 타겟이 존재하면 바라볼 방향을 보간한다
 	if target != null:
@@ -73,6 +71,8 @@ func _process(delta: float) -> void:
 		rot_deg = lerp($sprite.rotation_degrees, rot_deg, .2)
 		$sprite.rotation_degrees = rot_deg
 		$target_line.points[1] = target.global_position - global_position
+	else:
+		$target_line.points[1] = Vector2.ZERO
 	
 	$attack_line.points[1] = lerp($attack_line.points[1], Vector2.ZERO, 0.1)
 	pass
@@ -91,10 +91,14 @@ func _process(delta: float) -> void:
 	#print("long press")
 	#pass
 
-func to_focus_mode() -> void:
+func to_focus_mode(PaperArr: Array) -> void:
 	is_focus = true
+	var paper_arr: Array[Node2D] = []
+	for paper in PaperArr:
+		paper_arr.push_back(paper)
 	# 집중모드 진입시에만 목록 갱신
-	focus_array = $focus_area.get_overlapping_bodies()
+	#focus_array = $focus_area.get_overlapping_bodies()
+	focus_array = paper_arr
 	$FocusTimer.start()
 	pass
 
@@ -146,7 +150,7 @@ func _on_detect_area_body_exited(body: Node2D) -> void:
 func _on_focus_timer_timeout() -> void:
 	if focus_array.size() > 0 && is_focus == true:
 		target = focus_array[focus_array_idx]
-		print("target update: " + str(target.name))
+		print(target.global_position)
 		focus_array_idx += 1
 		if focus_array_idx >= focus_array.size():
 			focus_array_idx = 0

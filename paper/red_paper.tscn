@@ -1,6 +1,6 @@
 [gd_scene load_steps=14 format=3 uid="uid://0ooj3ujv4git"]
 
-[ext_resource type="Script" path="res://red_paper/red_paper.gd" id="1_ksod6"]
+[ext_resource type="Script" path="res://paper/red_paper.gd" id="1_h08gy"]
 [ext_resource type="Texture2D" uid="uid://id11525jty08" path="res://sprites/papers/PaperParticle.png" id="2_nvo2o"]
 [ext_resource type="Texture2D" uid="uid://yff6aqis78ay" path="res://sprites/papers/PaperFallingH1.png" id="3_saa13"]
 [ext_resource type="Texture2D" uid="uid://bqpvi5buvmijk" path="res://sprites/papers/PaperFallingH2.png" id="4_78vnn"]
@@ -52,9 +52,10 @@ _data = {
 }
 
 [node name="RedPaper" type="CharacterBody2D"]
-collision_mask = 2
+collision_mask = 6
 motion_mode = 1
-script = ExtResource("1_ksod6")
+script = ExtResource("1_h08gy")
+score = -30
 speed = 200.0
 
 [node name="before" type="Control" parent="."]
