@@ -9,7 +9,7 @@ var PaperTypeRng = RandomNumberGenerator.new()
 var PaperArr: Array
 
 var score: int = 0
-var max_count: int = 5
+var max_count: int = 3
 var time: int = 60
 
 # Called when the node enters the scene tree for the first time.
@@ -51,7 +51,7 @@ func remove_paper(paper, score):
 	PaperArr.erase(paper)
 	if score != 0:
 		update_score(score)
-		max_count += 1
+		#max_count += 1
 	while max_count>len(PaperArr):
 		PaperArr.push_back(create_paper())
 
