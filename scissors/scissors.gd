@@ -60,7 +60,8 @@ func _process(delta: float) -> void:
 		if target != null:
 			target.untargetted()
 		target = nearest_paper
-		target.targetted()
+		if target != null:
+			target.targetted()
 	#else:
 		#if global_position.distance_to(target.global_position) > global_position.distance_to(nearest_paper.global_position):
 			#target.untargetted()
@@ -124,7 +125,7 @@ func _attack_area_body_entered(body: Node2D) -> void:
 	body.normal_pressed()
 	if body == target:
 		target = null
-		print("need target update")
+		#print("need target update")
 	pass # Replace with function body.
 
 # 공격 범위에서 나가면 관련 시그널을 모두 disconnect 한다
@@ -154,7 +155,7 @@ func _on_detect_area_body_exited(body: Node2D) -> void:
 func _on_focus_timer_timeout() -> void:
 	if focus_array.size() > 0 && is_focus == true:
 		target = focus_array[focus_array_idx]
-		print(target.global_position)
+		#print(target.global_position)
 		focus_array_idx += 1
 		if focus_array_idx >= focus_array.size():
 			focus_array_idx = 0
