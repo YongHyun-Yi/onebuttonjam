@@ -23,6 +23,8 @@ normal = Vector2(-1, 0)
 [sub_resource type="LabelSettings" id="LabelSettings_ouut3"]
 font = ExtResource("5_0rwvr")
 font_size = 80
+outline_size = 10
+outline_color = Color(0, 0, 0, 1)
 
 [sub_resource type="LabelSettings" id="LabelSettings_xjwms"]
 font = ExtResource("5_0rwvr")
