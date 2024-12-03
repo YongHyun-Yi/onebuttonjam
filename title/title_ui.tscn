@@ -56,4 +56,78 @@ label_settings = SubResource("LabelSettings_3k5jd")
 horizontal_alignment = 1
 vertical_alignment = 1
 
+[node name="CreditButton" type="TextureButton" parent="."]
+layout_direction = 1
+layout_mode = 2
+anchor_left = 0.173
+anchor_top = 0.646
+anchor_right = 0.824
+anchor_bottom = 0.796
+offset_left = 0.010994
+offset_top = 124.608
+offset_right = 0.167969
+offset_bottom = 124.808
+texture_normal = ExtResource("3_k1los")
+
+[node name="Label" type="Label" parent="CreditButton"]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+text = "Credit"
+label_settings = SubResource("LabelSettings_3k5jd")
+horizontal_alignment = 1
+vertical_alignment = 1
+
+[node name="Credit" type="ColorRect" parent="."]
+visible = false
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+mouse_filter = 1
+color = Color(0, 0, 0, 0.878431)
+
+[node name="Label" type="Label" parent="Credit"]
+layout_mode = 0
+offset_left = 25.0
+offset_top = 126.0
+offset_right = 397.0
+offset_bottom = 199.0
+text = "background music: https://opengameart.org/content/nes-shooter-music-5-tracks-3-jingles
+
+sfx: https://freesound.org/people/rtyrtyrtyrtyrtyrtyrtyrty/sounds/766480/"
+autowrap_mode = 2
+
+[node name="CreditCloseButton" type="TextureButton" parent="Credit"]
+layout_direction = 1
+layout_mode = 2
+anchor_left = 0.173
+anchor_top = 0.646
+anchor_right = 0.824
+anchor_bottom = 0.796
+offset_left = 0.010994
+offset_top = -0.392029
+offset_right = 0.167969
+offset_bottom = -0.192078
+texture_normal = ExtResource("3_k1los")
+
+[node name="Label" type="Label" parent="Credit/CreditCloseButton"]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+text = "Close"
+label_settings = SubResource("LabelSettings_3k5jd")
+horizontal_alignment = 1
+vertical_alignment = 1
+
 [connection signal="button_up" from="StartButtonContainer/StartButton" to="." method="_on_start_button_button_up"]
+[connection signal="button_up" from="CreditButton" to="." method="_on_credit_button_button_up"]
+[connection signal="button_up" from="Credit/CreditCloseButton" to="." method="_on_credit_close_button_button_up"]

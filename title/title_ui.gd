@@ -14,3 +14,13 @@ func _process(delta: float) -> void:
 func _on_start_button_button_up() -> void:
 	get_tree().change_scene_to_file("res://main.tscn")
 	pass # Replace with function body.
+
+
+func _on_credit_button_button_up() -> void:
+	$Credit.show()
+	pass # Replace with function body.
+
+
+func _on_credit_close_button_button_up() -> void:
+	$Credit.hide()
+	pass # Replace with function body.
