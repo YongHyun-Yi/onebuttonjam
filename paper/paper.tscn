@@ -166,4 +166,7 @@ autoplay = "falling"
 [node name="sfx" type="AudioStreamPlayer" parent="."]
 stream = ExtResource("10_1sp0x")
 
+[node name="visblityNoti" type="VisibleOnScreenNotifier2D" parent="."]
+
 [connection signal="finished" from="PaperParticle" to="." method="_on_paper_particle_finished"]
+[connection signal="screen_exited" from="visblityNoti" to="." method="_on_visblity_noti_screen_exited"]

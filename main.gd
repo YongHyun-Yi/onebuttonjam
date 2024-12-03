@@ -52,8 +52,6 @@ func remove_paper(paper, score):
 	if score != 0:
 		update_score(score)
 		#max_count += 1
-	else:
-		paper.queue_free()
 	while max_count>len(PaperArr):
 		PaperArr.push_back(create_paper())
 

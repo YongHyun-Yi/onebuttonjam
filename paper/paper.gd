@@ -35,12 +35,6 @@ func _physics_process(delta: float) -> void:
 	velocity = direction * speed
 
 	move_and_slide()
-	
-	for index in get_slide_collision_count():
-		var collision := get_slide_collision(index)
-		score = 0
-		normal_pressed()
-		
 
 func targetted() -> void:
 	$before/ReferenceRect.border_color = Color.CRIMSON
@@ -67,3 +61,6 @@ func long_pressed() -> void:
 
 func _on_paper_particle_finished() -> void:
 	queue_free()
+
+func _on_visblity_noti_screen_exited() -> void:
+	get_node("/root/Main").remove_paper(self, 0)

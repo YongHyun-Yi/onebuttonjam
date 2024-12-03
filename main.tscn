@@ -1,4 +1,4 @@
-[gd_scene load_steps=16 format=3 uid="uid://dp4nqud5hjs4"]
+[gd_scene load_steps=12 format=3 uid="uid://dp4nqud5hjs4"]
 
 [ext_resource type="Script" path="res://main.gd" id="1_3c0rp"]
 [ext_resource type="PackedScene" uid="uid://uudw06qumf5x" path="res://paper/paper.tscn" id="2_sr16o"]
@@ -8,17 +8,6 @@
 [ext_resource type="PackedScene" uid="uid://bvy8a4x0u8kks" path="res://scissors/scissors.tscn" id="6_6o4hs"]
 [ext_resource type="Texture2D" uid="uid://cwmays0c52gic" path="res://sprites/ui_start_button.png" id="7_lg5i7"]
 [ext_resource type="AudioStream" uid="uid://b8r1sy26x5sf6" path="res://sounds/music.mp3" id="8_vln2l"]
-
-[sub_resource type="WorldBoundaryShape2D" id="WorldBoundaryShape2D_jrmcg"]
-normal = Vector2(0, 1)
-
-[sub_resource type="WorldBoundaryShape2D" id="WorldBoundaryShape2D_1qg0s"]
-normal = Vector2(1, 0)
-
-[sub_resource type="WorldBoundaryShape2D" id="WorldBoundaryShape2D_3h20j"]
-normal = Vector2(-1, 0)
-
-[sub_resource type="WorldBoundaryShape2D" id="WorldBoundaryShape2D_so7ha"]
 
 [sub_resource type="LabelSettings" id="LabelSettings_ouut3"]
 font = ExtResource("5_0rwvr")
@@ -48,40 +37,6 @@ metadata/_edit_lock_ = true
 
 [node name="PaperHolder" type="Node2D" parent="."]
 process_mode = 1
-
-[node name="Border" type="Node2D" parent="."]
-
-[node name="Up" type="StaticBody2D" parent="Border"]
-position = Vector2(2, -133)
-collision_layer = 4
-
-[node name="CollisionShape2D" type="CollisionShape2D" parent="Border/Up"]
-shape = SubResource("WorldBoundaryShape2D_jrmcg")
-metadata/_edit_lock_ = true
-
-[node name="Left" type="StaticBody2D" parent="Border"]
-position = Vector2(-107, 435)
-collision_layer = 4
-
-[node name="CollisionShape2D" type="CollisionShape2D" parent="Border/Left"]
-shape = SubResource("WorldBoundaryShape2D_1qg0s")
-metadata/_edit_lock_ = true
-
-[node name="Right" type="StaticBody2D" parent="Border"]
-position = Vector2(542, 425)
-collision_layer = 4
-
-[node name="CollisionShape2D" type="CollisionShape2D" parent="Border/Right"]
-shape = SubResource("WorldBoundaryShape2D_3h20j")
-metadata/_edit_lock_ = true
-
-[node name="Bottom" type="StaticBody2D" parent="Border"]
-position = Vector2(4, 948)
-collision_layer = 4
-
-[node name="CollisionShape2D" type="CollisionShape2D" parent="Border/Bottom"]
-shape = SubResource("WorldBoundaryShape2D_so7ha")
-metadata/_edit_lock_ = true
 
 [node name="StartPosition" type="Marker2D" parent="."]
 position = Vector2(196, 412)
