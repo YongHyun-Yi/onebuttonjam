@@ -71,6 +71,7 @@ func _on_game_timer_timeout() -> void:
 	for paper in papers:
 		paper.queue_free()
 	PaperArr.resize(0)
+	$music.stop()
 	pass # Replace with function body.
 
 
@@ -87,4 +88,5 @@ func _on_start_button_button_up() -> void:
 	PaperTimer.wait_time = PaperTimerRng.randf_range(0.7, 1.2)
 	for i in 5:
 		PaperArr.push_back(create_paper())
+	$music.play()
 	pass # Replace with function body.

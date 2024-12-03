@@ -36,6 +36,8 @@ func _unhandled_input(event: InputEvent) -> void:
 			get_tree().paused = false
 			$FocusTimer.stop()
 			focus_array_idx = 0
+			AudioServer.set_bus_effect_enabled(0, 0, false)
+			AudioServer.set_bus_effect_enabled(0, 1, false)
 		if target != null:
 			$attack_area/CollisionShape2D.shape.b = global_position - target.global_position
 			$attack_line.points[1] = $attack_area/CollisionShape2D.shape.b
@@ -100,6 +102,8 @@ func to_focus_mode(PaperArr: Array) -> void:
 	#focus_array = $focus_area.get_overlapping_bodies()
 	focus_array = paper_arr
 	$FocusTimer.start()
+	AudioServer.set_bus_effect_enabled(0, 0, true)
+	AudioServer.set_bus_effect_enabled(0, 1, true)
 	pass
 
 # 여기서 attack area를 toggle한다

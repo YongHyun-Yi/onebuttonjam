@@ -1,4 +1,4 @@
-[gd_scene load_steps=15 format=3 uid="uid://dp4nqud5hjs4"]
+[gd_scene load_steps=16 format=3 uid="uid://dp4nqud5hjs4"]
 
 [ext_resource type="Script" path="res://main.gd" id="1_3c0rp"]
 [ext_resource type="PackedScene" uid="uid://uudw06qumf5x" path="res://paper/paper.tscn" id="2_sr16o"]
@@ -7,6 +7,7 @@
 [ext_resource type="PackedScene" uid="uid://pmo4uml7kbgf" path="res://Click3WaySystem/Click3WaySystem.tscn" id="5_a6li4"]
 [ext_resource type="PackedScene" uid="uid://bvy8a4x0u8kks" path="res://scissors/scissors.tscn" id="6_6o4hs"]
 [ext_resource type="Texture2D" uid="uid://cwmays0c52gic" path="res://sprites/ui_start_button.png" id="7_lg5i7"]
+[ext_resource type="AudioStream" uid="uid://b8r1sy26x5sf6" path="res://sounds/music.mp3" id="8_vln2l"]
 
 [sub_resource type="WorldBoundaryShape2D" id="WorldBoundaryShape2D_jrmcg"]
 normal = Vector2(0, 1)
@@ -165,6 +166,10 @@ text = "Retry"
 label_settings = SubResource("LabelSettings_1o1us")
 horizontal_alignment = 1
 vertical_alignment = 1
+
+[node name="music" type="AudioStreamPlayer" parent="."]
+stream = ExtResource("8_vln2l")
+autoplay = true
 
 [connection signal="to_long_tap" from="Click3WaySystem" to="." method="_on_click_3_way_system_to_long_tap"]
 [connection signal="to_long_tap" from="Click3WaySystem" to="Scissors" method="to_focus_mode"]

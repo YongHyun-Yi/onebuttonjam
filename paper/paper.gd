@@ -55,6 +55,7 @@ func normal_pressed() -> void:
 	$CollisionShape2D.set_deferred("disabled", true)
 	$PaperParticle.emitting = true
 	get_node("/root/Main").remove_paper(self, score)
+	$sfx.play()
 	pass
 
 func double_pressed() -> void:

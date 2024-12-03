@@ -1,0 +1,15 @@
+[gd_resource type="AudioBusLayout" load_steps=3 format=3 uid="uid://dxeikfv01tejt"]
+
+[sub_resource type="AudioEffectReverb" id="AudioEffectReverb_vgk4c"]
+resource_name = "Reverb"
+room_size = 0.6
+
+[sub_resource type="AudioEffectLowPassFilter" id="AudioEffectLowPassFilter_jp3nx"]
+resource_name = "LowPassFilter"
+
+[resource]
+bus/0/volume_db = 0.0672607
+bus/0/effect/0/effect = SubResource("AudioEffectReverb_vgk4c")
+bus/0/effect/0/enabled = true
+bus/0/effect/1/effect = SubResource("AudioEffectLowPassFilter_jp3nx")
+bus/0/effect/1/enabled = false
