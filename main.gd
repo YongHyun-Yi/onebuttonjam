@@ -9,8 +9,7 @@ var PaperTypeRng = RandomNumberGenerator.new()
 var PaperArr: Array
 
 var score: int = 0
-var max_count: int = 3
-var time: int = 60
+var max_count: int = 4
 
 # Called when the node enters the scene tree for the first time.
 func _ready() -> void:
@@ -79,7 +78,8 @@ func _on_game_timer_timeout() -> void:
 
 func _on_start_button_button_up() -> void:
 	score = 0
-	max_count = 5
+	max_count = 4
+	$GameTimer.start()
 	$ScoreLabel.text = "0"
 	$GameoverLabel.hide()
 	$RetryButton.hide()
