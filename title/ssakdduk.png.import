@@ -2,16 +2,16 @@
 
 importer="texture"
 type="CompressedTexture2D"
-uid="uid://b5sraekdpqonu"
-path="res://.godot/imported/PaperBasic6.png-f93cbff39ca0ee8889e644bf2aa508b0.ctex"
+uid="uid://cs2ld1oqeq2lf"
+path="res://.godot/imported/ssakdduk.png-199e784be9b6d619ef4f1e65e3c7686a.ctex"
 metadata={
 "vram_texture": false
 }
 
 [deps]
 
-source_file="res://sprites/papers/PaperBasic6.png"
-dest_files=["res://.godot/imported/PaperBasic6.png-f93cbff39ca0ee8889e644bf2aa508b0.ctex"]
+source_file="res://title/ssakdduk.png"
+dest_files=["res://.godot/imported/ssakdduk.png-199e784be9b6d619ef4f1e65e3c7686a.ctex"]
 
 [params]
 

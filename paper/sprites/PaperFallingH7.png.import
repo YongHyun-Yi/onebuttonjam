@@ -2,16 +2,16 @@
 
 importer="texture"
 type="CompressedTexture2D"
-uid="uid://yff6aqis78ay"
-path="res://.godot/imported/PaperFallingH1.png-fd08b5adefcb6768f5a6f631f35089d3.ctex"
+uid="uid://voe44ibab5jv"
+path="res://.godot/imported/PaperFallingH7.png-7455c614d727fddce57168bce20aaba6.ctex"
 metadata={
 "vram_texture": false
 }
 
 [deps]
 
-source_file="res://sprites/papers/PaperFallingH1.png"
-dest_files=["res://.godot/imported/PaperFallingH1.png-fd08b5adefcb6768f5a6f631f35089d3.ctex"]
+source_file="res://paper/sprites/PaperFallingH7.png"
+dest_files=["res://.godot/imported/PaperFallingH7.png-7455c614d727fddce57168bce20aaba6.ctex"]
 
 [params]
 

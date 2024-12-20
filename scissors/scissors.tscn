@@ -1,7 +1,7 @@
 [gd_scene load_steps=6 format=3 uid="uid://bvy8a4x0u8kks"]
 
-[ext_resource type="Script" path="res://scissors/scissors.gd" id="1_0xbn0"]
-[ext_resource type="Texture2D" uid="uid://xoxdlm711285" path="res://sprites/scissor.png" id="2_em1j6"]
+[ext_resource type="Script" path="res://scissors/scripts/scissors.gd" id="1_0xbn0"]
+[ext_resource type="Texture2D" uid="uid://xoxdlm711285" path="res://scissors/sprites/scissor.png" id="2_em1j6"]
 
 [sub_resource type="SegmentShape2D" id="SegmentShape2D_btmgx"]
 b = Vector2(100, 0)
