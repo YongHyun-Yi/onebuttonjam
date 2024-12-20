@@ -1,7 +1,6 @@
-[gd_scene load_steps=15 format=3 uid="uid://uudw06qumf5x"]
+[gd_scene load_steps=13 format=3 uid="uid://uudw06qumf5x"]
 
 [ext_resource type="Script" path="res://paper/scripts/paper.gd" id="1_qnxbi"]
-[ext_resource type="Texture2D" uid="uid://id11525jty08" path="res://paper/sprites/PaperParticle.png" id="2_3gr3r"]
 [ext_resource type="Texture2D" uid="uid://yff6aqis78ay" path="res://paper/sprites/PaperFallingH1.png" id="2_ytjoj"]
 [ext_resource type="Texture2D" uid="uid://bqpvi5buvmijk" path="res://paper/sprites/PaperFallingH2.png" id="3_6kmhw"]
 [ext_resource type="Texture2D" uid="uid://dhirwjq7uwatp" path="res://paper/sprites/PaperFallingH3.png" id="4_083vf"]
@@ -9,7 +8,6 @@
 [ext_resource type="Texture2D" uid="uid://dewrn1v5aponf" path="res://paper/sprites/PaperFallingH5.png" id="6_lstf1"]
 [ext_resource type="Texture2D" uid="uid://blb85awiu2xcc" path="res://paper/sprites/PaperFallingH6.png" id="7_1kxq7"]
 [ext_resource type="Texture2D" uid="uid://voe44ibab5jv" path="res://paper/sprites/PaperFallingH7.png" id="8_wonx3"]
-[ext_resource type="AudioStream" uid="uid://cpohgxgfsbp5h" path="res://scissors/sounds/slash.mp3" id="10_1sp0x"]
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_x8ymx"]
 size = Vector2(100, 70)
@@ -56,102 +54,10 @@ _data = {
 collision_mask = 6
 motion_mode = 1
 script = ExtResource("1_qnxbi")
-speed = 200.0
-
-[node name="before" type="Control" parent="."]
-visible = false
-layout_mode = 3
-anchors_preset = 0
-offset_right = 40.0
-offset_bottom = 40.0
-
-[node name="ColorRect" type="ColorRect" parent="before"]
-layout_mode = 0
-offset_left = -59.0
-offset_top = -92.0
-offset_right = 69.0
-offset_bottom = 105.0
-rotation = 1.5708
-pivot_offset = Vector2(63, 92)
-
-[node name="ReferenceRect" type="ReferenceRect" parent="before"]
-layout_mode = 0
-offset_left = -59.0
-offset_top = -92.0
-offset_right = 69.0
-offset_bottom = 105.0
-rotation = 1.5708
-pivot_offset = Vector2(63, 92)
-border_color = Color(0, 0, 0, 1)
-border_width = 3.0
-editor_only = false
-
-[node name="after" type="Control" parent="."]
-visible = false
-layout_mode = 3
-anchors_preset = 0
-offset_right = 40.0
-offset_bottom = 40.0
-
-[node name="ColorRect" type="ColorRect" parent="after"]
-layout_mode = 0
-offset_left = -59.0
-offset_top = -92.0
-offset_right = -20.0
-offset_bottom = 105.0
-rotation = 1.5708
-pivot_offset = Vector2(63, 92)
-
-[node name="ReferenceRect" type="ReferenceRect" parent="after"]
-layout_mode = 0
-offset_left = -59.0
-offset_top = -92.0
-offset_right = -18.0
-offset_bottom = 105.0
-rotation = 1.5708
-pivot_offset = Vector2(63, 92)
-border_color = Color(0, 0, 0, 1)
-border_width = 3.0
-editor_only = false
-
-[node name="ColorRect2" type="ColorRect" parent="after"]
-layout_mode = 0
-offset_left = -59.0
-offset_top = -5.0
-offset_right = -18.0
-offset_bottom = 192.0
-rotation = 1.5708
-pivot_offset = Vector2(63, 92)
-
-[node name="ReferenceRect2" type="ReferenceRect" parent="after"]
-layout_mode = 0
-offset_left = -59.0
-offset_top = -6.0
-offset_right = -17.0
-offset_bottom = 191.0
-rotation = 1.5708
-pivot_offset = Vector2(63, 92)
-border_color = Color(0, 0, 0, 1)
-border_width = 3.0
-editor_only = false
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="."]
 position = Vector2(-2.5, 2)
 shape = SubResource("RectangleShape2D_x8ymx")
-
-[node name="PaperParticle" type="CPUParticles2D" parent="."]
-emitting = false
-amount = 2
-one_shot = true
-explosiveness = 1.0
-texture = ExtResource("2_3gr3r")
-direction = Vector2(0, -1)
-initial_velocity_min = 443.18
-initial_velocity_max = 443.18
-angular_velocity_min = -90.0
-angular_velocity_max = 90.0
-angle_min = -90.0
-angle_max = 90.0
 
 [node name="Sprite2D" type="Sprite2D" parent="."]
 position = Vector2(0, -14)
@@ -162,11 +68,3 @@ libraries = {
 "": SubResource("AnimationLibrary_f2lj3")
 }
 autoplay = "falling"
-
-[node name="sfx" type="AudioStreamPlayer" parent="."]
-stream = ExtResource("10_1sp0x")
-
-[node name="visblityNoti" type="VisibleOnScreenNotifier2D" parent="."]
-
-[connection signal="finished" from="PaperParticle" to="." method="_on_paper_particle_finished"]
-[connection signal="screen_exited" from="visblityNoti" to="." method="_on_visblity_noti_screen_exited"]
