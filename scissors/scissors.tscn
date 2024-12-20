@@ -1,20 +1,13 @@
-[gd_scene load_steps=6 format=3 uid="uid://bvy8a4x0u8kks"]
+[gd_scene load_steps=4 format=3 uid="uid://bvy8a4x0u8kks"]
 
-[ext_resource type="Script" path="res://scissors/scripts/scissors.gd" id="1_0xbn0"]
+[ext_resource type="Script" path="res://scissors/scripts/Scissors.gd" id="1_8gnp2"]
 [ext_resource type="Texture2D" uid="uid://xoxdlm711285" path="res://scissors/sprites/scissor.png" id="2_em1j6"]
 
-[sub_resource type="SegmentShape2D" id="SegmentShape2D_btmgx"]
-b = Vector2(100, 0)
+[sub_resource type="CircleShape2D" id="CircleShape2D_lwwve"]
+radius = 25.0799
 
-[sub_resource type="CircleShape2D" id="CircleShape2D_chxj4"]
-radius = 200.0
-
-[sub_resource type="Gradient" id="Gradient_ewjwl"]
-offsets = PackedFloat32Array(0, 0.6875, 1)
-colors = PackedColorArray(0.722656, 0.722656, 0.722656, 1, 0.894531, 0.894531, 0.894531, 0.882353, 1, 1, 1, 0)
-
-[node name="Scissors" type="Node2D"]
-script = ExtResource("1_0xbn0")
+[node name="Scissors" type="CharacterBody2D"]
+script = ExtResource("1_8gnp2")
 
 [node name="sprite" type="Marker2D" parent="."]
 
@@ -27,34 +20,5 @@ rotation = -1.5708
 texture = ExtResource("2_em1j6")
 flip_h = true
 
-[node name="attack_area" type="Area2D" parent="."]
-visible = false
-collision_layer = 2
-
-[node name="CollisionShape2D" type="CollisionShape2D" parent="attack_area"]
-position = Vector2(26, 1)
-shape = SubResource("SegmentShape2D_btmgx")
-disabled = true
-
-[node name="detect_area" type="Area2D" parent="."]
-collision_layer = 2
-
-[node name="CollisionShape2D" type="CollisionShape2D" parent="detect_area"]
-shape = SubResource("CircleShape2D_chxj4")
-
-[node name="attack_line" type="Line2D" parent="."]
-points = PackedVector2Array(0, 0, 0, 0)
-gradient = SubResource("Gradient_ewjwl")
-
-[node name="target_line" type="Line2D" parent="."]
-points = PackedVector2Array(0, 0, 0, 0)
-width = 3.0
-default_color = Color(1, 0, 0, 1)
-
-[node name="FocusTimer" type="Timer" parent="."]
-wait_time = 0.3
-
-[connection signal="body_entered" from="attack_area" to="." method="_attack_area_body_entered"]
-[connection signal="body_exited" from="attack_area" to="." method="_on_attack_area_body_exited"]
-[connection signal="body_exited" from="detect_area" to="." method="_on_detect_area_body_exited"]
-[connection signal="timeout" from="FocusTimer" to="." method="_on_focus_timer_timeout"]
+[node name="CollisionShape2D" type="CollisionShape2D" parent="."]
+shape = SubResource("CircleShape2D_lwwve")
