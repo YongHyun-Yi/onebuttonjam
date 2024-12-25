@@ -1,9 +1,19 @@
-[gd_scene load_steps=2 format=3 uid="uid://dp4nqud5hjs4"]
+[gd_scene load_steps=3 format=3 uid="uid://dp4nqud5hjs4"]
 
+[ext_resource type="PackedScene" uid="uid://uudw06qumf5x" path="res://paper/paper.tscn" id="2_yfw2q"]
 [ext_resource type="PackedScene" uid="uid://bvy8a4x0u8kks" path="res://scissors/scissors.tscn" id="6_6o4hs"]
 
 [node name="Main" type="Node2D"]
 process_mode = 3
 
 [node name="Scissors" parent="." instance=ExtResource("6_6o4hs")]
-position = Vector2(196, 412)
+position = Vector2(207, 644)
+
+[node name="Paper" parent="." instance=ExtResource("2_yfw2q")]
+position = Vector2(79, 187)
+
+[node name="Paper2" parent="." instance=ExtResource("2_yfw2q")]
+position = Vector2(206, 323)
+
+[node name="Paper3" parent="." instance=ExtResource("2_yfw2q")]
+position = Vector2(333, 81)
