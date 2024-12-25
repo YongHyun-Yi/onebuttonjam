@@ -10,6 +10,7 @@ radius = 25.0799
 script = ExtResource("1_8gnp2")
 
 [node name="sprite" type="Marker2D" parent="."]
+scale = Vector2(0.5, 0.5)
 
 [node name="left" type="Sprite2D" parent="sprite"]
 rotation = -1.5708
