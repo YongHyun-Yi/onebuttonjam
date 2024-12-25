@@ -9,8 +9,8 @@
 [ext_resource type="Texture2D" uid="uid://blb85awiu2xcc" path="res://paper/sprites/PaperFallingH6.png" id="7_1kxq7"]
 [ext_resource type="Texture2D" uid="uid://voe44ibab5jv" path="res://paper/sprites/PaperFallingH7.png" id="8_wonx3"]
 
-[sub_resource type="RectangleShape2D" id="RectangleShape2D_x8ymx"]
-size = Vector2(100, 70)
+[sub_resource type="CircleShape2D" id="CircleShape2D_f6ehd"]
+radius = 13.537
 
 [sub_resource type="Animation" id="Animation_em1e5"]
 length = 0.001
@@ -55,13 +55,14 @@ collision_mask = 6
 motion_mode = 1
 script = ExtResource("1_qnxbi")
 
+[node name="Sprite2D" type="Sprite2D" parent="."]
+position = Vector2(-4, -5)
+scale = Vector2(0.5, 0.5)
+texture = ExtResource("2_ytjoj")
+
 [node name="CollisionShape2D" type="CollisionShape2D" parent="."]
 position = Vector2(-2.5, 2)
-shape = SubResource("RectangleShape2D_x8ymx")
-
-[node name="Sprite2D" type="Sprite2D" parent="."]
-position = Vector2(0, -14)
-texture = ExtResource("2_ytjoj")
+shape = SubResource("CircleShape2D_f6ehd")
 
 [node name="AnimationPlayer" type="AnimationPlayer" parent="."]
 libraries = {
