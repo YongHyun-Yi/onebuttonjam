@@ -1,11 +1,13 @@
-extends CharacterBody2D
+extends Area2D
 
+var velocity: Vector2 = Vector2.ZERO
 var isMove: bool = false
 var direction: Vector2 = Vector2.ZERO
 var targetPosition: Vector2 = Vector2.ZERO
-const SPEED = 1200.0
-const GRAVITY_MAX = 130.0
 
+@export var max_speed: float = 1000.0
+@export var min_speed: float = 200.0
+@export var max_distance: float = 100.0
 
 func _input(event):
 	if event is InputEventScreenTouch and event.pressed:
@@ -17,13 +19,13 @@ func _input(event):
 func _physics_process(delta: float) -> void:
 	# Add the gravity.
 	if isMove:
-		velocity = direction * SPEED
-		if abs(global_position.distance_to(targetPosition)) < 10:
+		var distance = abs(global_position.distance_to(targetPosition))
+		distance = min(distance, max_distance)
+		var speed = max(min_speed, max_speed * (distance / max_distance))
+		velocity = direction * speed * delta
+		$sprite.rotation_degrees = lerp($sprite.rotation_degrees, rad_to_deg(global_position.angle_to_point(targetPosition)), .4) 
+		if distance < 10:
 			isMove = false
 			velocity = Vector2.ZERO
-	else:
-		velocity += get_gravity() * delta
-		if velocity.y > GRAVITY_MAX:
-			velocity.y = GRAVITY_MAX
 
-	move_and_slide()
+	global_position += velocity
